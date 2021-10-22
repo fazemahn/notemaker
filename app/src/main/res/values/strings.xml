@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">NoteMaker</string>
+    <string name="app_name">NoteMe</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">Note Maker</string>
-    <string name="second_fragment_label">Note Maker</string>
+    <string name="first_fragment_label">NoteMe</string>
+    <string name="second_fragment_label">NoteMe</string>
     <string name="newNote">Add Note</string>
     <string name="saveNote">Save</string>
     <string name="discardChanges">Discard Changes</string>
