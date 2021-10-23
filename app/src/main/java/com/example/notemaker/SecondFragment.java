@@ -55,14 +55,16 @@ public class SecondFragment extends Fragment {
                     title.setError("Title required");
                     Toast.makeText(getContext(), "Title is required", Toast.LENGTH_SHORT).show();
                 } else {
+                    //make new note
                      newNote = new NotesModel(
                             title.getText().toString(),
                             subtitle.getText().toString(),
                             note.getText().toString(),
+                             "yellow", //pls add the colour picker here
                              LocalDateTime.now(),
                              LocalDateTime.now()
                     );
-                    //Toast.makeText(getContext(), newNote.toString(), Toast.LENGTH_LONG).show();
+                     //add to db
                     long success = dbHelper.createNote(newNote);
                     Toast.makeText(getContext(), Long.toString(success), Toast.LENGTH_LONG).show();
                     //go back to main
@@ -80,8 +82,8 @@ public class SecondFragment extends Fragment {
                         .navigate(R.id.action_discard_changes);
             }
         });
-
-
+        //close db cuz dont want multi instances
+        dbHelper.close();
     }
 
     @Override

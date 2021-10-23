@@ -2,17 +2,25 @@ package com.example.notemaker;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
 public class NotesDao extends SQLiteOpenHelper {
+    private static DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss");
 
     public static final String COL_NOTE = "NOTE";
     public static final String NOTES_TABLE = COL_NOTE + "S_TABLE";
     public static final String COL_TITLE = "TITLE";
     public static final String COL_SUBTITLE = "SUBTITLE";
+    public static final String COL_COLOUR = "COLOUR";
     public static final String COL_CREATED_ON = "CREATED_ON";
     public static final String COL_UPDATED_ON = "UPDATED_ON";
     public static final String COL_ID = "ID";
@@ -26,7 +34,8 @@ public class NotesDao extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createTableStmt = "CREATE TABLE " + NOTES_TABLE + " (" + COL_ID +
                 " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_TITLE + " TEXT NOT NULL, " + COL_SUBTITLE +
-                " TEXT, " + COL_NOTE + " TEXT, " + COL_CREATED_ON + " TEXT, " + COL_UPDATED_ON + " TEXT)";
+                " TEXT, " + COL_NOTE + " TEXT, " + COL_COLOUR + " TEXT, " + COL_CREATED_ON
+                + " TEXT, " + COL_UPDATED_ON + " TEXT)";
 
         db.execSQL(createTableStmt);
     }
@@ -45,6 +54,7 @@ public class NotesDao extends SQLiteOpenHelper {
         cv.put(COL_TITLE, note.getTitle());
         cv.put(COL_SUBTITLE, note.getSubtitle());
         cv.put(COL_NOTE, note.getNote());
+        cv.put(COL_COLOUR, note.getColour());
         cv.put(COL_CREATED_ON, note.getCreated());
         cv.put(COL_UPDATED_ON, note.getUpdated());
 
@@ -53,14 +63,47 @@ public class NotesDao extends SQLiteOpenHelper {
     }
 
     //read
-    public NotesModel[] getAllNotes() {
-        String slct = "SELECT * FROM " + NOTES_TABLE + ";";
+    public List<NotesModel> getAllNotes() {
+        List<NotesModel> notes = new ArrayList<>();
 
-        return null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + NOTES_TABLE;
+
+        Cursor cur = db.rawQuery(query, null);
+
+        if(cur.moveToFirst()) {
+            do {
+                //get row data
+                int id = cur.getInt(0);
+                String title = cur.getString(1);
+                String subtitle = cur.getString(2);
+                String note = cur.getString(3);
+                String colour = cur.getString(4);
+                String crt = cur.getString(5);
+                String upd = cur.getString(6);
+
+                //convert date string to date obj
+                LocalDateTime created = LocalDateTime.parse(crt, df);
+                LocalDateTime updated = LocalDateTime.parse(upd, df);
+
+                //make note and add to list
+                NotesModel n = new NotesModel(id, title, subtitle, note, colour, created, updated);
+                notes.add(n);
+            } while(cur.moveToNext());
+        }
+
+        db.close();
+        cur.close();
+        return notes;
     }
 
-    public NotesModel[] getNotesByTitleSearch(String title) {
-        return null;
+    public List<NotesModel> getNotesByTitleSearch(String title) {
+        List<NotesModel> notes = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] cols = {COL_ID, COL_TITLE, COL_SUBTITLE, COL_NOTE, COL_COLOUR, COL_CREATED_ON, COL_UPDATED_ON};
+        String[] args = {title};
+        Cursor cur =  db.query(NOTES_TABLE, cols, COL_TITLE, args, null, null, null);
+        return notes;
     }
 
     public NotesModel getNoteById(int id) {

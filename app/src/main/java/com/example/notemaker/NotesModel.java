@@ -8,13 +8,25 @@ public class NotesModel {
     private String title;
     private String subtitle;
     private String note;
+    private String colour;
     private LocalDateTime created;
     private LocalDateTime updated;
 
-    public NotesModel(String title, String subtitle, String note, LocalDateTime created, LocalDateTime updated) {
+    public NotesModel(String title, String subtitle, String note, String colour, LocalDateTime created, LocalDateTime updated) {
         this.title = title;
         this.subtitle = subtitle;
         this.note = note;
+        this.colour = colour;
+        this.created = created;
+        this.updated = updated;
+    }
+
+    public NotesModel(int id, String title, String subtitle, String note, String colour, LocalDateTime created, LocalDateTime updated) {
+        this.id = id;
+        this.title = title;
+        this.subtitle = subtitle;
+        this.note = note;
+        this.colour = colour;
         this.created = created;
         this.updated = updated;
     }
@@ -26,6 +38,7 @@ public class NotesModel {
                 ", title='" + title + '\'' +
                 ", subtitle='" + subtitle + '\'' +
                 ", note='" + note + '\'' +
+                ", colour='" + colour + '\'' +
                 ", created=" + created +
                 ", updated=" + updated +
                 '}';
@@ -61,6 +74,14 @@ public class NotesModel {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
     }
 
     public String getCreated() {
