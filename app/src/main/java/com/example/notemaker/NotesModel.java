@@ -85,7 +85,7 @@ public class NotesModel {
     }
 
     public String getCreated() {
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss");
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return df.format(created);
     }
 
@@ -94,7 +94,7 @@ public class NotesModel {
     }
 
     public String getUpdated() {
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss");
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return df.format(updated);
     }
 

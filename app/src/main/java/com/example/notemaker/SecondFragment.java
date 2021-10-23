@@ -31,13 +31,13 @@ public class SecondFragment extends Fragment {
 
         binding = FragmentSecondBinding.inflate(inflater, container, false);
         return binding.getRoot();
-
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //init view items and db
         NotesDao dbHelper = new NotesDao(getContext());
+
         saveBtn = getView().findViewById(R.id.buttonSave);
         discardBtn = getView().findViewById(R.id.buttonDiscardChanges);
         title = getView().findViewById(R.id.editTextTitle);
@@ -82,8 +82,6 @@ public class SecondFragment extends Fragment {
                         .navigate(R.id.action_discard_changes);
             }
         });
-        //close db cuz dont want multi instances
-        dbHelper.close();
     }
 
     @Override
