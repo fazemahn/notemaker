@@ -101,7 +101,7 @@ public class NotesDao extends SQLiteOpenHelper {
     public List<NotesModel> getNotesByTitleSearch(String title) {
         List<NotesModel> notes = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + NOTES_TABLE + " WHERE " + COL_TITLE + " LIKE %" + title + "%";
+        String query = "SELECT * FROM " + NOTES_TABLE + " WHERE " + COL_TITLE + " LIKE \'%" + title + "%\'";
         Cursor cur =  db.rawQuery(query, null);
 
         if(cur.moveToFirst()) {

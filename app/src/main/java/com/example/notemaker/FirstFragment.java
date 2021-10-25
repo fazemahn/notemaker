@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,9 +40,28 @@ public class FirstFragment extends Fragment {
         //ArrayAdapter notesAdapter = new ArrayAdapter<NotesModel>(getContext(), android.R.layout.simple_list_item_1, allNotes);
 
         //test to see it gets all notes; pls put ur own code here
-        Toast.makeText(getContext(), allNotes.toString(), Toast.LENGTH_LONG).show();
+        // Toast.makeText(getContext(), allNotes.toString(), Toast.LENGTH_LONG).show();
 
+        ArrayList<String> all_notes_arraylist = new ArrayList<>();
+        for (int i = 0; i < allNotes.size(); i++)
+            all_notes_arraylist.add(allNotes.get(i).toString());
 
+        // Print the array list
+        for (String item:all_notes_arraylist) {
+            System.out.println(item);
+        }
+
+        ListView all_notes_list = getView().findViewById(R.id.all_notes_list);
+
+        // Create adapter for list to display all notes
+        ArrayAdapter all_notes_listview_adapter = new ArrayAdapter<String>(
+                getActivity(),
+                android.R.layout.simple_list_item_1,
+                all_notes_arraylist
+        );
+
+        // Set adapter for list view
+        all_notes_list.setAdapter(all_notes_listview_adapter);
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +71,7 @@ public class FirstFragment extends Fragment {
             }
         });
     }
+
 
     @Override
     public void onDestroyView() {

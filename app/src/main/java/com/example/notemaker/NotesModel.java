@@ -33,15 +33,18 @@ public class NotesModel {
 
     @Override
     public String toString() {
-        return "NotesModel{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", subtitle='" + subtitle + '\'' +
-                ", note='" + note + '\'' +
-                ", colour='" + colour + '\'' +
-                ", created=" + created +
-                ", updated=" + updated +
-                '}';
+//        return "NotesModel{" +
+//                "id=" + id +
+//                ", title='" + title + '\'' +
+//                ", subtitle='" + subtitle + '\'' +
+//                ", note='" + note + '\'' +
+//                ", colour='" + colour + '\'' +
+//                ", created=" + created +
+//                ", updated=" + updated +
+//                '}';
+
+        // Updating the toString
+        return title + " - " + subtitle + ": " + note;
     }
 
     public int getId() {

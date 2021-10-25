@@ -14,10 +14,16 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.notemaker.databinding.ActivityMainBinding;
-
+import com.example.notemaker.NotesDao;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,6 +72,39 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // method to search for notes
+    public void searchNotes(View view) {
+        System.out.println("Searching for notes");
+        EditText search_edit_view = findViewById(R.id.search_edit_view);
+        String search_value = search_edit_view.getText().toString();
+        System.out.println("search value: " + search_value);
+        NotesDao dbHelper = new NotesDao(this);
+        List<NotesModel> searched_notes = dbHelper.getNotesByTitleSearch(search_value);
+        System.out.println("Number of notes: " + searched_notes.size() + " NOTES: " + searched_notes.toString());
+
+
+        ArrayList<String> searched_notes_arraylist = new ArrayList<>();
+        for (int i = 0; i < searched_notes.size(); i++)
+            searched_notes_arraylist.add(searched_notes.get(i).toString());
+
+        // Print the array list
+        for (String item: searched_notes_arraylist) {
+            System.out.println(item);
+        }
+
+        ListView search_notes_list = findViewById(R.id.all_notes_list);
+
+        // Create adapter for list to display all notes
+        ArrayAdapter searched_notes_listview_adapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                searched_notes_arraylist
+        );
+
+        // Set adapter for list view
+        search_notes_list.setAdapter(searched_notes_listview_adapter);
     }
 
     @Override
