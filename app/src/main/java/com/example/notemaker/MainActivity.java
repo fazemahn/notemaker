@@ -1,5 +1,6 @@
 package com.example.notemaker;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -17,6 +18,7 @@ import com.example.notemaker.databinding.ActivityMainBinding;
 import com.example.notemaker.NotesDao;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -101,7 +103,19 @@ public class MainActivity extends AppCompatActivity {
                 this,
                 android.R.layout.simple_list_item_1,
                 searched_notes_arraylist
-        );
+        ){
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent){
+                // Get the Item from ListView
+                View view = super.getView(position, convertView, parent);
+
+                view.setBackgroundColor(Color.parseColor(searched_notes.get(position).getColour()));
+
+                // Generate ListView Item using TextView
+                return view;
+            }
+
+        };
 
         // Set adapter for list view
         search_notes_list.setAdapter(searched_notes_listview_adapter);

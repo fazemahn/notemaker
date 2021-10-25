@@ -1,5 +1,6 @@
 package com.example.notemaker;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +59,18 @@ public class FirstFragment extends Fragment {
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 all_notes_arraylist
-        );
+        ){
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent){
+                // Get the Item from ListView
+                View view = super.getView(position, convertView, parent);
+
+                view.setBackgroundColor(Color.parseColor(allNotes.get(position).getColour()));
+
+                // Generate ListView Item using TextView
+                return view;
+            }
+        };
 
         // Set adapter for list view
         all_notes_list.setAdapter(all_notes_listview_adapter);

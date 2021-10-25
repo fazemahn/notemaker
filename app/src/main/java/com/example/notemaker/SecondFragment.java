@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 public class SecondFragment extends Fragment {
 
     private Button saveBtn, discardBtn;
-    private EditText title, subtitle, note;
+    private EditText title, subtitle, note_colour, note;
     private FragmentSecondBinding binding;
 
     @Override
@@ -42,6 +42,7 @@ public class SecondFragment extends Fragment {
         discardBtn = getView().findViewById(R.id.buttonDiscardChanges);
         title = getView().findViewById(R.id.editTextTitle);
         subtitle = getView().findViewById(R.id.editTextSubtitle);
+        note_colour = getView().findViewById(R.id.editTextColour);
         note = getView().findViewById(R.id.editTextNote);
 
         //save listener
@@ -60,7 +61,7 @@ public class SecondFragment extends Fragment {
                             title.getText().toString(),
                             subtitle.getText().toString(),
                             note.getText().toString(),
-                             "yellow", //pls add the colour picker here
+                             note_colour.getText().toString(), //pls add the colour picker here
                              LocalDateTime.now(),
                              LocalDateTime.now()
                     );
