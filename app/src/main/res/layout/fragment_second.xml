@@ -8,13 +8,14 @@
 
     <EditText
         android:id="@+id/editTextTitle"
-        android:hint="Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="Title"
         android:inputType="textAutoCorrect"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,32 +23,33 @@
         android:id="@+id/editTextSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:ems="10"
         android:hint="Subtitle"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextTitle" />
 
+
     <EditText
+        android:id="@+id/editTextColour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter a valid colour"
+        android:layout_marginTop="4dp"
         android:ems="10"
-        android:layout_marginTop="16dp"
-        android:id="@+id/editTextColour"
+        android:hint="Enter a valid colour"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextSubtitle"
-        />
-
+        app:layout_constraintTop_toBottomOf="@id/editTextSubtitle" />
 
     <EditText
         android:id="@+id/editTextNote"
-        android:layout_width="349dp"
-        android:layout_height="450dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="385dp"
+        android:layout_height="199dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="tap to enter note"
@@ -55,6 +57,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextColour" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="12dp"
+        android:adjustViewBounds="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/buttonImage"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonSave"
@@ -75,5 +87,16 @@
         android:text="@string/discardChanges"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/buttonImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Add image"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDiscardChanges"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

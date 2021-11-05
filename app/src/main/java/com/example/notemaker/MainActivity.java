@@ -1,5 +1,6 @@
 package com.example.notemaker;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -19,6 +20,7 @@ import com.example.notemaker.NotesDao;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,6 +52,17 @@ public class MainActivity extends AppCompatActivity {
 //            public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
+//            }
+//        });
+
+//        ListView all_notes_list = getView().findViewById(R.id.all_notes_list);
+//
+//        all_notes_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(getApplicationContext(), SecondFragment.class);
+//                intent.putExtra("nodeID", i);
+//                startActivity(intent);
 //            }
 //        });
     }
